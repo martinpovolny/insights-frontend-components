@@ -78,9 +78,11 @@ class Gauge extends Component {
             4: 'ins-m-fill-level-1'
         };
 
+        let gaugeColor = this.props.flipFullColors ? "ins-m-negative" : "";
+
         const gaugeClasses = classNames(
             this.props.className,
-            'ins-m-' + this.props.gaugeFullCondition,
+            gaugeColor,
             'ins-c-gauge',
             colors[Math.floor(this.props.value / threshold)]
         );
@@ -107,12 +109,13 @@ Gauge.propTypes = {
     identifier: propTypes.string,
     label: propTypes.string.isRequired,
     value: propTypes.number.isRequired,
-    width: propTypes.number
-    gaugeFullCondition: propTypes.string
+    width: propTypes.number,
+    flipFullColors: propTypes.bool
 };
 
 Gauge.defaultProps = {
     height: 200,
     identifier: generateId(),
-    width: 200
+    width: 200,
+    flipFullColors: false
 };
